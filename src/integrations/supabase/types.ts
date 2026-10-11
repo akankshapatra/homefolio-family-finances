@@ -14,13 +14,356 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      account: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "account_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_log: {
+        Row: {
+          action: string
+          created_at: string
+          detail: string
+          family_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          detail: string
+          family_id: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          detail?: string
+          family_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_log_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bill_subscription: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bill_subscription_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      budget: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "budget_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      category: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "category_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      expense_split: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expense_split_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      family: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      family_member: {
+        Row: {
+          family_id: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          family_id: string
+          id?: string
+          name?: string
+          user_id: string
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_member_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      goal_contribution: {
+        Row: {
+          amount: number
+          created_at: string
+          family_id: string
+          goal_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          family_id: string
+          goal_id: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          family_id?: string
+          goal_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goal_contribution_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "goal_contribution_family_id_goal_id_fkey"
+            columns: ["family_id", "goal_id"]
+            isOneToOne: false
+            referencedRelation: "savings_goal"
+            referencedColumns: ["family_id", "id"]
+          },
+        ]
+      }
+      savings_goal: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "savings_goal_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transaction: {
+        Row: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Insert: {
+          family_id: string
+          id: string
+          payload: Json
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transaction_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          family_id: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          family_id: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          family_id?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "family"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_household: { Args: { p_name: string }; Returns: string }
+      family_role: { Args: { p_family: string }; Returns: string }
+      read_finance: { Args: { p_family: string }; Returns: Json }
+      save_finance: {
+        Args: { p_family: string; p_state: Json }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
